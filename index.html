@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RFLCT — Verkoop je woning zelf. Maar niet alleen.</title>
+  <meta name="description" content="Verkoop je woning zelf met professionele begeleiding tegen een vaste prijs. Geen commissie, geen verrassingen. Bespaar tot €10.000. Vlaams-Brabant & Limburg." />
+  <!--
+    ====================================================================
+    RFLCT — Alternatieve homepage (ontwerp-mockup)
+    --------------------------------------------------------------------
+    Doel: bezoekers langer vasthouden en doorklikken naar andere pagina's
+    door een sterke hook, een gratis lead-magnet (waardebepaling) en een
+    duidelijk verhaal van probleem -> oplossing -> bewijs -> actie.
+
+    Deze pagina is opgebouwd uit secties die 1-op-1 overeenkomen met
+    standaard Odoo Website "building blocks" (snippets). Per sectie staat
+    in een HTML-commentaar welk Odoo-snippet je sleept. Zie ODOO-OPBOUW.md
+    voor de volledige handleiding.
+
+    Kleuren verwijzen naar de Odoo theme-kleuren (o-color-1 t/m 5) zodat
+    je in Odoo enkel je echte huisstijlkleuren hoeft in te stellen.
+    ====================================================================
+  -->
+  <style>
+    :root {
+      /* Map naar Odoo theme colors -> pas aan naar echte RFLCT-huisstijl */
+      --o-color-1: #14302e;   /* Primary  — diep groen/petrol (vertrouwen) */
+      --o-color-2: #c8a15a;   /* Secondary— warm goud (accent / CTA)       */
+      --o-color-3: #f4f1ea;   /* Light    — zacht zand (achtergronden)     */
+      --o-color-4: #ffffff;   /* White                                     */
+      --o-color-5: #1f1d1a;   /* Dark text                                 */
+      --muted: #6b6660;
+      --line: #e7e2d8;
+      --radius: 14px;
+      --shadow: 0 18px 40px -24px rgba(20,48,46,.45);
+      --maxw: 1140px;
+      --ff: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff); color: var(--o-color-5); background: var(--o-color-4); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3 { line-height: 1.15; color: var(--o-color-1); font-weight: 800; letter-spacing: -.01em; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+    h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); }
+    h3 { font-size: 1.2rem; }
+    p  { color: #45413c; }
+    a  { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    section { padding: 84px 0; }
+    .eyebrow { display:inline-block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color: var(--o-color-2); margin-bottom: 14px; }
+    .lead { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
+    .center { text-align:center; }
+    .center .lead { margin: 0 auto; }
+
+    /* Buttons */
+    .btn { display:inline-flex; align-items:center; gap:.55rem; font-weight:700; font-size:1rem; padding: 15px 28px; border-radius: 999px; transition: transform .15s ease, box-shadow .2s ease, background .2s; cursor:pointer; border: 2px solid transparent; }
+    .btn-primary { background: var(--o-color-2); color: var(--o-color-1); box-shadow: 0 12px 24px -12px rgba(200,161,90,.9); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 30px -12px rgba(200,161,90,.95); }
+    .btn-ghost { background: transparent; color: var(--o-color-4); border-color: rgba(255,255,255,.4); }
+    .btn-ghost:hover { background: rgba(255,255,255,.12); }
+    .btn-dark { background: var(--o-color-1); color: #fff; }
+    .btn-dark:hover { transform: translateY(-2px); }
+
+    /* ---------- Announcement bar ---------- */
+    .topbar { background: var(--o-color-1); color: #f3eee3; font-size:.9rem; text-align:center; padding: 9px 16px; }
+    .topbar b { color: var(--o-color-2); }
+
+    /* ---------- Header / nav ---------- */
+    header.nav { position: sticky; top:0; z-index: 50; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; height: 74px; }
+    .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: .18em; color: var(--o-color-1); }
+    .logo span { color: var(--o-color-2); }
+    .menu { display:flex; gap: 30px; font-weight:600; font-size:.97rem; }
+    .menu a:hover { color: var(--o-color-2); }
+    .nav-cta { display:flex; align-items:center; gap: 18px; }
+    .nav-cta .phone { font-weight:700; color: var(--o-color-1); }
+    @media (max-width: 860px){ .menu, .nav-cta .phone { display:none; } }
+
+    /* ---------- Hero (s_cover) ---------- */
+    .hero { position: relative; color:#fff; background:
+        linear-gradient(180deg, rgba(20,48,46,.78), rgba(20,48,46,.86)),
+        url("https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+        padding: 110px 0 96px; }
+    .hero h1, .hero h2 { color:#fff; }
+    .hero .lead { color: #e8e3d7; font-size: 1.25rem; }
+    .hero-badges { display:flex; flex-wrap:wrap; gap: 22px; margin: 30px 0 34px; }
+    .hero-badge { display:flex; align-items:center; gap:.5rem; font-weight:600; color:#f3eee3; }
+    .hero-badge .tick { color: var(--o-color-2); font-weight:900; }
+    .hero-cta { display:flex; flex-wrap:wrap; gap: 16px; }
+    .hero-note { margin-top: 18px; font-size:.92rem; color:#cfc9bb; }
+
+    /* ---------- Stat bar (s_numbers) ---------- */
+    .stats { background: var(--o-color-1); color:#fff; padding: 46px 0; }
+    .stats-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 24px; text-align:center; }
+    .stat .num { font-size: 2.6rem; font-weight: 900; color: var(--o-color-2); }
+    .stat .lbl { font-size:.95rem; color:#ddd6c8; }
+    @media (max-width: 760px){ .stats-grid { grid-template-columns: repeat(2,1fr); gap: 30px; } }
+
+    /* ---------- Lead magnet (s_call_to_action + form) ---------- */
+    .magnet { background: var(--o-color-3); }
+    .magnet-card { background:#fff; border:1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); display:grid; grid-template-columns: 1.1fr .9fr; overflow:hidden; }
+    .magnet-card .left { padding: 48px; }
+    .magnet-card .right { background: linear-gradient(160deg, var(--o-color-1), #0c1f1e); color:#fff; padding: 48px; display:flex; flex-direction:column; justify-content:center; }
+    .magnet-card .right h3 { color:#fff; font-size:1.4rem; margin-bottom: 10px; }
+    .magnet-card .right p { color:#cdd5cf; }
+    .field { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+    .field label { font-size:.85rem; font-weight:600; color: var(--o-color-1); }
+    .field input { padding: 13px 14px; border:1px solid var(--line); border-radius: 10px; font-size:1rem; font-family:inherit; }
+    .field input:focus { outline:2px solid var(--o-color-2); border-color: transparent; }
+    .magnet-list { list-style:none; margin-top: 18px; display:grid; gap:12px; }
+    .magnet-list li { display:flex; gap:.6rem; color:#e9efe9; }
+    .magnet-list .tick { color: var(--o-color-2); font-weight:900; }
+    @media (max-width: 820px){ .magnet-card { grid-template-columns: 1fr; } }
+
+    /* ---------- Steps (s_process_steps) ---------- */
+    .steps-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 22px; margin-top: 44px; }
+    .step { background:#fff; border:1px solid var(--line); border-radius: var(--radius); padding: 28px; position:relative; transition: transform .2s, box-shadow .2s; }
+    .step:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .step .n { width:44px; height:44px; border-radius:50%; background: var(--o-color-1); color: var(--o-color-2); font-weight:900; display:flex; align-items:center; justify-content:center; font-size:1.15rem; margin-bottom: 16px; }
+    .step h3 { margin-bottom: 8px; }
+    .step p { font-size:.95rem; }
+    @media (max-width: 900px){ .steps-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 520px){ .steps-grid { grid-template-columns: 1fr; } }
+
+    /* ---------- Features (s_three_columns) ---------- */
+    .feat-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 44px; }
+    .feat { background: var(--o-color-3); border-radius: var(--radius); padding: 30px; transition: transform .2s; }
+    .feat:hover { transform: translateY(-4px); }
+    .feat .ic { font-size: 1.9rem; margin-bottom: 14px; }
+    .feat h3 { margin-bottom: 8px; }
+    .feat p { font-size:.96rem; }
+    @media (max-width: 900px){ .feat-grid { grid-template-columns: 1fr; } }
+
+    /* ---------- Comparison (s_comparisons) ---------- */
+    .cmp { background: var(--o-color-3); }
+    .cmp-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 44px; align-items:start; }
+    .col { background:#fff; border:1px solid var(--line); border-radius: 18px; padding: 32px; }
+    .col.featured { border: 2px solid var(--o-color-2); box-shadow: var(--shadow); position:relative; }
+    .col.featured .tag { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background: var(--o-color-2); color: var(--o-color-1); font-weight:800; font-size:.78rem; padding:6px 16px; border-radius:999px; letter-spacing:.04em; }
+    .col h3 { font-size:1.25rem; }
+    .col .price { font-size: 1.6rem; font-weight:900; color: var(--o-color-1); margin: 10px 0 6px; }
+    .col .sub { font-size:.9rem; color: var(--muted); margin-bottom: 18px; }
+    .col ul { list-style:none; display:grid; gap:11px; }
+    .col li { display:flex; gap:.6rem; font-size:.95rem; }
+    .col li .y { color:#2e9e6b; font-weight:900; }
+    .col li .n { color:#c0392b; font-weight:900; }
+    @media (max-width: 900px){ .cmp-grid { grid-template-columns: 1fr; } }
+
+    /* ---------- Testimonials (s_quotes_carousel) ---------- */
+    .quotes-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 44px; }
+    .quote { background:#fff; border:1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+    .quote .stars { color: var(--o-color-2); margin-bottom: 12px; letter-spacing:2px; }
+    .quote p { font-style: italic; color:#3a3631; }
+    .quote .who { margin-top: 16px; font-weight:700; color: var(--o-color-1); font-size:.95rem; }
+    .quote .who span { display:block; font-weight:500; color: var(--muted); font-size:.85rem; }
+    @media (max-width: 900px){ .quotes-grid { grid-template-columns: 1fr; } }
+
+    /* ---------- FAQ (s_faq_collapse) ---------- */
+    .faq { max-width: 800px; margin: 44px auto 0; }
+    details { background:#fff; border:1px solid var(--line); border-radius: 12px; padding: 4px 22px; margin-bottom: 14px; }
+    details[open] { border-color: var(--o-color-2); }
+    summary { font-weight:700; color: var(--o-color-1); cursor:pointer; padding: 18px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+    summary::-webkit-details-marker { display:none; }
+    summary::after { content:"+"; color: var(--o-color-2); font-size:1.5rem; font-weight:700; }
+    details[open] summary::after { content:"–"; }
+    details p { padding: 0 0 20px; color:#45413c; }
+
+    /* ---------- Final CTA (s_call_to_action) ---------- */
+    .final { background: linear-gradient(160deg, var(--o-color-1), #0c1f1e); color:#fff; text-align:center; }
+    .final h2 { color:#fff; }
+    .final .lead { color:#d7d1c3; margin: 14px auto 28px; }
+    .final .hero-cta { justify-content:center; }
+
+    /* ---------- Footer ---------- */
+    footer { background: #0c1f1e; color:#bdb6a8; padding: 56px 0 28px; font-size:.95rem; }
+    .foot-grid { display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 30px; }
+    footer h4 { color:#fff; font-size:1rem; margin-bottom: 14px; }
+    footer a { display:block; padding: 4px 0; color:#bdb6a8; }
+    footer a:hover { color: var(--o-color-2); }
+    .foot-bottom { border-top:1px solid rgba(255,255,255,.1); margin-top: 36px; padding-top: 20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:.85rem; }
+    @media (max-width: 820px){ .foot-grid { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       SECTIE 0 — Announcement bar
+       Odoo-blok: header "Top Bar" / s_text_block (1 kolom, smal)
+       Hook: directe, vrijblijvende prikkel boven de vouw.
+  ================================================================= -->
+  <div class="topbar">
+    🏡 Gratis &amp; vrijblijvend kennismakingsgesprek — <b>bespaar tot €10.000 commissie</b> bij de verkoop van je woning
+  </div>
+
+  <!-- ================================================================
+       SECTIE 1 — Header / navigatie
+       Odoo-blok: Website Header (template) + Menu + Call-to-action knop
+  ================================================================= -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo">RFL<span>CT</span></div>
+      <nav class="menu">
+        <a href="#hoe">Hoe het werkt</a>
+        <a href="#diensten">Diensten</a>
+        <a href="#vergelijk">Waarom RFLCT</a>
+        <a href="#prijs">Tarieven</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-cta">
+        <span class="phone">📞 Bel ons</span>
+        <a href="#waardebepaling" class="btn btn-primary">Gratis waardebepaling</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================================================================
+       SECTIE 2 — Hero / Cover
+       Odoo-blok: s_cover ("Cover") met achtergrondafbeelding + 2 knoppen
+       Hook: kernbelofte + cijfer-anker (€10.000) + dubbele CTA.
+  ================================================================= -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--o-color-2)">Vlaams-Brabant &amp; Limburg</span>
+      <h1>Verkoop je woning zelf.<br>Maar niet alleen.</h1>
+      <p class="lead">Professionele begeleiding van strategie tot bod — tegen een vaste prijs, zónder commissie. Jij houdt de regie én de opbrengst. Bespaar tot <strong>€10.000</strong>.</p>
+      <div class="hero-badges">
+        <span class="hero-badge"><span class="tick">✓</span> Vaste prijs, geen commissie</span>
+        <span class="hero-badge"><span class="tick">✓</span> Onafhankelijke schatting</span>
+        <span class="hero-badge"><span class="tick">✓</span> Alles geregeld: attesten, foto's &amp; advertenties</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#waardebepaling" class="btn btn-primary">Bereken gratis je woningwaarde →</a>
+        <a href="#hoe" class="btn btn-ghost">Bekijk hoe het werkt</a>
+      </div>
+      <p class="hero-note">In 60 seconden — vrijblijvend en zonder verplichtingen.</p>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTIE 3 — Cijferbalk / vertrouwen
+       Odoo-blok: s_numbers ("Numbers") — 4 kolommen met counters
+       Hook: sociaal bewijs onmiddellijk na de hero.
+  ================================================================= -->
+  <div class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat"><div class="num">€10.000+</div><div class="lbl">gemiddeld bespaard aan commissie</div></div>
+      <div class="stat"><div class="num">€2.850</div><div class="lbl">vast pakket, alles inbegrepen</div></div>
+      <div class="stat"><div class="num">100%</div><div class="lbl">van de opbrengst voor jou</div></div>
+      <div class="stat"><div class="num">5★</div><div class="lbl">begeleiding van A tot Z</div></div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       SECTIE 4 — Lead magnet: Gratis waardebepaling  ⭐ KERN-HOOK
+       Odoo-blok: s_call_to_action + s_website_form (formulier)
+       Doel: bouncende bezoeker omzetten in een lead / doorklik.
+  ================================================================= -->
+  <section class="magnet" id="waardebepaling">
+    <div class="wrap">
+      <div class="magnet-card">
+        <div class="left">
+          <span class="eyebrow">Gratis &amp; vrijblijvend</span>
+          <h2 style="font-size:1.9rem;">Wat is jouw woning vandaag waard?</h2>
+          <p style="margin:10px 0 22px;">Ontvang een eerste, onderbouwde inschatting van je woningwaarde. Geen verkoper aan de lijn — gewoon eerlijk advies om mee te starten.</p>
+          <form onsubmit="return false;">
+            <div class="field"><label>Adres van je woning</label><input type="text" placeholder="Straat, nummer, gemeente" /></div>
+            <div class="field"><label>E-mailadres</label><input type="email" placeholder="jij@voorbeeld.be" /></div>
+            <button class="btn btn-dark" style="width:100%; justify-content:center;">Bezorg mij mijn gratis schatting →</button>
+          </form>
+        </div>
+        <div class="right">
+          <h3>Wat je krijgt</h3>
+          <p>Een helder startpunt — binnen 1 werkdag.</p>
+          <ul class="magnet-list">
+            <li><span class="tick">✓</span> Realistische prijsvork op basis van vergelijkbare verkopen</li>
+            <li><span class="tick">✓</span> Inschatting van je besparing t.o.v. een makelaar</li>
+            <li><span class="tick">✓</span> De eerste stappen van je verkoopplan</li>
+            <li><span class="tick">✓</span> 100% vrijblijvend, geen verkoopdruk</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTIE 5 — Hoe het werkt (proces)
+       Odoo-blok: s_process_steps ("Steps") — 4 stappen
+       Hook: maakt zelf verkopen overzichtelijk en haalbaar.
+  ================================================================= -->
+  <section id="hoe">
+    <div class="wrap center">
+      <span class="eyebrow">Zo eenvoudig is het</span>
+      <h2>Van eerste gesprek tot getekend compromis</h2>
+      <p class="lead">Jij verkoopt zelf, wij begeleiden bij elke stap. Geen makelaar tussen jou en je koper.</p>
+      <div class="steps-grid" style="text-align:left;">
+        <div class="step"><div class="n">1</div><h3>Strategie &amp; plan</h3><p>In een eerste gesprek stellen we samen een concreet actieplan op: wat moet er gebeuren en wanneer.</p></div>
+        <div class="step"><div class="n">2</div><h3>Prijs &amp; attesten</h3><p>We bepalen een realistische vraagprijs met onafhankelijk schattingsverslag en regelen EPC, keuring en asbestattest via onze partners.</p></div>
+        <div class="step"><div class="n">3</div><h3>Online in de kijker</h3><p>Professionele fotografie, plattegronden, 3D en overtuigende advertenties op de grootste vastgoedplatformen.</p></div>
+        <div class="step"><div class="n">4</div><h3>Bezichtigingen &amp; bod</h3><p>We begeleiden je bij kandidaat-kopers, onderhandeling en het beoordelen van elk bod tot aan de verkoop.</p></div>
+      </div>
+      <a href="#waardebepaling" class="btn btn-primary" style="margin-top:40px;">Start vandaag — gratis →</a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTIE 6 — Diensten / wat je krijgt
+       Odoo-blok: s_features of s_three_columns ("Columns")
+  ================================================================= -->
+  <section id="diensten" style="background:#fff;">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow">Alles inbegrepen</span>
+        <h2>Een volledige makelaarsservice — zonder makelaarscommissie</h2>
+        <p class="lead">Alles wat je nodig hebt om je woning professioneel voor te bereiden, zichtbaar te maken en te verkopen.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat"><div class="ic">📋</div><h3>Persoonlijk actieplan</h3><p>Een helder stappenplan op maat zodat je nooit hoeft te twijfelen wat de volgende stap is.</p></div>
+        <div class="feat"><div class="ic">📈</div><h3>Onafhankelijke schatting</h3><p>Een realistische, onderbouwde vraagprijs die je woning niet onder- of overwaardeert.</p></div>
+        <div class="feat"><div class="ic">📑</div><h3>Attesten geregeld</h3><p>EPC, elektrische keuring en asbestattest — via onze partners razendsnel in orde.</p></div>
+        <div class="feat"><div class="ic">📸</div><h3>Professionele beelden</h3><p>Hoogwaardige fotografie, duidelijke plattegronden en 3D-visualisaties die verkopen.</p></div>
+        <div class="feat"><div class="ic">🌐</div><h3>Maximale zichtbaarheid</h3><p>Overtuigende teksten en geoptimaliseerde advertenties op de grootste vastgoedportalen.</p></div>
+        <div class="feat"><div class="ic">🤝</div><h3>Begeleiding bij biedingen</h3><p>We helpen je begrijpen wat er écht op tafel ligt en waarop je moet letten bij elk bod.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTIE 7 — Vergelijking
+       Odoo-blok: s_comparisons ("Comparisons") — 3 kolommen, 1 featured
+       Hook: positioneert RFLCT als de logische middenweg.
+  ================================================================= -->
+  <section class="cmp" id="vergelijk">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow">De slimme middenweg</span>
+        <h2>Zelf verkopen, makelaar, of het beste van beide?</h2>
+        <p class="lead">Behoud de controle en je opbrengst — met de expertise van een professional aan je zijde.</p>
+      </div>
+      <div class="cmp-grid">
+        <div class="col">
+          <h3>Helemaal alleen</h3>
+          <div class="price">€0 begeleiding</div>
+          <div class="sub">Alle werk en risico bij jou</div>
+          <ul>
+            <li><span class="y">✓</span> Geen commissie</li>
+            <li><span class="n">✕</span> Geen professionele schatting</li>
+            <li><span class="n">✕</span> Zelf attesten uitzoeken</li>
+            <li><span class="n">✕</span> Zelf foto's &amp; advertenties</li>
+            <li><span class="n">✕</span> Alleen in de onderhandeling</li>
+          </ul>
+        </div>
+        <div class="col featured">
+          <span class="tag">AANBEVOLEN</span>
+          <h3>Met RFLCT</h3>
+          <div class="price">vanaf €2.850</div>
+          <div class="sub">Vaste prijs, alles inbegrepen</div>
+          <ul>
+            <li><span class="y">✓</span> Geen commissie — bespaar tot €10.000</li>
+            <li><span class="y">✓</span> Onafhankelijke schatting</li>
+            <li><span class="y">✓</span> Attesten via partners geregeld</li>
+            <li><span class="y">✓</span> Professionele foto's, 3D &amp; advertenties</li>
+            <li><span class="y">✓</span> Begeleiding tot en met het bod</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Klassieke makelaar</h3>
+          <div class="price">3% commissie</div>
+          <div class="sub">Al snel €10.000+ op je verkoopprijs</div>
+          <ul>
+            <li><span class="n">✕</span> Hoge commissie op de verkoopprijs</li>
+            <li><span class="y">✓</span> Professionele begeleiding</li>
+            <li><span class="y">✓</span> Attesten geregeld</li>
+            <li><span class="y">✓</span> Foto's &amp; advertenties</li>
+            <li><span class="n">✕</span> Minder controle, makelaar bepaalt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTIE 8 — Tarief teaser
+       Odoo-blok: s_text_image ("Text - Image") of s_banner
+  ================================================================= -->
+  <section id="prijs" style="background:#fff;">
+    <div class="wrap center">
+      <span class="eyebrow">Transparante tarieven</span>
+      <h2>Eén vaste prijs. Geen verrassingen.</h2>
+      <p class="lead">Geen commissie op je verkoopprijs, geen verborgen kosten. Een vast pakket vanaf <strong>€2.850 incl. btw</strong> — zodat je besparing al snel oploopt tot meer dan €10.000.</p>
+      <a href="#prijs" class="btn btn-primary" style="margin-top:28px;">Bekijk alle tarieven →</a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTIE 9 — Testimonials
+       Odoo-blok: s_quotes_carousel of s_references ("Testimonials")
+  ================================================================= -->
+  <section class="cmp">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow">Verkopers gingen je voor</span>
+        <h2>Zelf verkocht, duizenden euro's bespaard</h2>
+      </div>
+      <div class="quotes-grid">
+        <div class="quote"><div class="stars">★★★★★</div><p>"We hadden nooit gedacht dat we onze woning zelf zouden durven verkopen. Met RFLCT voelde het op geen enkel moment alsof we er alleen voor stonden."</p><div class="who">Familie Vermeulen<span>Lubbeek</span></div></div>
+        <div class="quote"><div class="stars">★★★★★</div><p>"Professionele foto's, alle attesten geregeld en een eerlijke prijs. We bespaarden ruim €11.000 aan commissie."</p><div class="who">Tom &amp; Lien<span>Leuven</span></div></div>
+        <div class="quote"><div class="stars">★★★★★</div><p>"Het actieplan gaf ons meteen rust. We wisten altijd wat de volgende stap was. Binnen zes weken verkocht."</p><div class="who">Hilde D.<span>Hasselt</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTIE 10 — FAQ
+       Odoo-blok: s_faq_collapse ("FAQ") — accordion
+       Hook: wegnemen van twijfels die tot bounce leiden.
+  ================================================================= -->
+  <section id="faq">
+    <div class="wrap center">
+      <span class="eyebrow">Veelgestelde vragen</span>
+      <h2>Alles wat je je afvraagt</h2>
+    </div>
+    <div class="wrap faq">
+      <details open><summary>Verkoop ik echt helemaal zelf?</summary><p>Ja. Jij blijft verkoper en houdt de volledige regie en opbrengst. RFLCT begeleidt je als adviseur bij elke stap, maar treedt niet op als tussenpersoon tussen jou en de koper.</p></details>
+      <details><summary>Hoeveel kost het en hoeveel bespaar ik?</summary><p>Je werkt met een vast pakket vanaf €2.850 incl. btw — zonder commissie op je verkoopprijs. Bij een gemiddelde woning loopt je besparing zo snel op tot meer dan €10.000.</p></details>
+      <details><summary>Regelen jullie de verplichte attesten?</summary><p>Zeker. Via onze partners breng je EPC, elektrische keuring en asbestattest in recordtempo in orde.</p></details>
+      <details><summary>In welke regio zijn jullie actief?</summary><p>We begeleiden particuliere verkopers in Vlaams-Brabant en Limburg — o.a. Leuven, Tienen, Diest, Aarschot, Hasselt, Lummen en omstreken.</p></details>
+      <details><summary>Wat als ik nog twijfel?</summary><p>Plan een gratis en vrijblijvend kennismakingsgesprek. Je krijgt eerlijk advies en een eerste inschatting, zonder enige verplichting.</p></details>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTIE 11 — Final call-to-action
+       Odoo-blok: s_call_to_action ("Call to Action")
+  ================================================================= -->
+  <section class="final">
+    <div class="wrap">
+      <span class="eyebrow">Klaar om te starten?</span>
+      <h2>Ontdek vandaag nog wat jouw woning waard is</h2>
+      <p class="lead">Gratis, vrijblijvend en zonder verkoopdruk. De eerste stap naar duizenden euro's besparing.</p>
+      <div class="hero-cta">
+        <a href="#waardebepaling" class="btn btn-primary">Gratis waardebepaling →</a>
+        <a href="#hoe" class="btn btn-ghost">Plan een kennismaking</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTIE 12 — Footer
+       Odoo-blok: Website Footer (template) + s_text_block / links
+  ================================================================= -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="logo" style="color:#fff;">RFL<span>CT</span></div>
+          <p style="margin-top:12px; max-width:32ch;">Verkoop je woning zelf, maar niet alleen. Professionele begeleiding zonder commissie in Vlaams-Brabant &amp; Limburg.</p>
+        </div>
+        <div><h4>Diensten</h4><a href="#">Verkoopbegeleiding</a><a href="#">Aankoopbegeleiding</a><a href="#">Waardebepaling</a><a href="#">Attesten</a></div>
+        <div><h4>RFLCT</h4><a href="#">Hoe het werkt</a><a href="#">Tarieven</a><a href="#">Blog &amp; Academy</a><a href="#">Contact</a></div>
+        <div><h4>Contact</h4><a href="#">📞 Bel ons</a><a href="#">✉️ info@rflct.be</a><a href="#">Vlaams-Brabant &amp; Limburg</a></div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 RFLCT — Alle rechten voorbehouden.</span>
+        <span>Privacybeleid · Algemene voorwaarden</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
