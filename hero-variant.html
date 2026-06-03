@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RFLCT — Hero variant (rustig, split-layout)</title>
+  <!--
+    ====================================================================
+    RFLCT — Alternatieve hero (eerste blok)
+    --------------------------------------------------------------------
+    Reden: de versie met volledige achtergrondfoto + donkere overlay
+    oogde te druk. Deze variant gebruikt een rustige, lichte achtergrond
+    met de tekst links en ÉÉN nette foto rechts (zonder overlay).
+
+    De hook blijft behouden via:
+      - dezelfde glasheldere kernbelofte
+      - het cijfer-anker (€10.000) als zwevend kaartje op de foto
+      - de dubbele CTA met de gratis waardebepaling als hoofdaktie
+
+    Odoo building block: Structure › "Image - Text" (s_image_text)
+      - links: tekstkolom met titel, lead, knoppen
+      - rechts: Media (foto) — eventueel met een klein Card-snippet als
+        zwevend besparing-kaartje.
+    ====================================================================
+  -->
+  <style>
+    :root {
+      --o-color-1: #14302e;
+      --o-color-2: #c8a15a;
+      --o-color-3: #f4f1ea;
+      --o-color-4: #ffffff;
+      --o-color-5: #1f1d1a;
+      --muted: #6b6660;
+      --line: #e7e2d8;
+      --shadow: 0 18px 40px -24px rgba(20,48,46,.45);
+      --maxw: 1140px;
+      --ff: "Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--ff); color:var(--o-color-5); background:var(--o-color-4); line-height:1.6; -webkit-font-smoothing:antialiased; }
+    h1 { font-size:clamp(2.2rem,4.8vw,3.7rem); line-height:1.12; color:var(--o-color-1); font-weight:800; letter-spacing:-.01em; }
+    .wrap { max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+    .eyebrow { display:inline-block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--o-color-2); margin-bottom:16px; }
+    .lead { font-size:1.2rem; color:var(--muted); max-width:48ch; }
+
+    .btn { display:inline-flex; align-items:center; gap:.55rem; font-weight:700; font-size:1rem; padding:15px 28px; border-radius:999px; transition:transform .15s, box-shadow .2s, background .2s; cursor:pointer; border:2px solid transparent; }
+    .btn-primary { background:var(--o-color-2); color:var(--o-color-1); box-shadow:0 12px 24px -12px rgba(200,161,90,.9); }
+    .btn-primary:hover { transform:translateY(-2px); }
+    .btn-line { background:transparent; color:var(--o-color-1); border-color:var(--line); }
+    .btn-line:hover { border-color:var(--o-color-1); }
+
+    /* Top bar + nav (alleen voor context bij de preview) */
+    .topbar { background:var(--o-color-1); color:#f3eee3; font-size:.9rem; text-align:center; padding:9px 16px; }
+    .topbar b { color:var(--o-color-2); }
+    header.nav { position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; height:74px; }
+    .logo { font-weight:900; font-size:1.5rem; letter-spacing:.18em; color:var(--o-color-1); }
+    .logo span { color:var(--o-color-2); }
+    .menu { display:flex; gap:30px; font-weight:600; font-size:.97rem; }
+    .menu a { color:inherit; text-decoration:none; }
+    .menu a:hover { color:var(--o-color-2); }
+    @media (max-width:860px){ .menu { display:none; } }
+
+    /* ---------- Hero variant ---------- */
+    .hero { background:var(--o-color-3); padding:72px 0 84px; position:relative; overflow:hidden; }
+    .hero::before { content:""; position:absolute; top:-120px; right:-120px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle, rgba(200,161,90,.18), transparent 70%); }
+    .hero-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; position:relative; }
+
+    .hero-badges { display:flex; flex-direction:column; gap:12px; margin:28px 0 32px; }
+    .hero-badge { display:flex; align-items:center; gap:.6rem; font-weight:600; color:#3a3631; }
+    .hero-badge .tick { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--o-color-1); color:var(--o-color-2); font-size:.8rem; font-weight:900; flex:0 0 auto; }
+    .hero-cta { display:flex; flex-wrap:wrap; gap:14px; }
+    .hero-note { margin-top:16px; font-size:.92rem; color:var(--muted); }
+
+    /* Foto rechts, netjes in kader, geen overlay */
+    .hero-media { position:relative; }
+    .hero-media img { width:100%; height:520px; object-fit:cover; border-radius:22px; box-shadow:var(--shadow); display:block; }
+
+    /* Zwevend besparing-kaartje = de hook, zonder druk te zijn */
+    .float-card { position:absolute; left:-26px; bottom:34px; background:#fff; border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:18px 22px; display:flex; align-items:center; gap:14px; }
+    .float-card .big { font-size:1.9rem; font-weight:900; color:var(--o-color-1); line-height:1; }
+    .float-card .lbl { font-size:.82rem; color:var(--muted); max-width:15ch; }
+    .float-card .euro { width:46px; height:46px; border-radius:12px; background:var(--o-color-2); color:var(--o-color-1); display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:900; flex:0 0 auto; }
+
+    .trust-mini { position:absolute; right:-14px; top:26px; background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); padding:12px 16px; font-weight:700; color:var(--o-color-1); font-size:.9rem; }
+    .trust-mini span { color:var(--o-color-2); }
+
+    @media (max-width:920px){
+      .hero-grid { grid-template-columns:1fr; gap:40px; }
+      .hero-media img { height:380px; }
+      .float-card { left:16px; bottom:16px; }
+      .trust-mini { right:16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Context: top bar + nav (ongewijzigd t.o.v. de hoofdpagina) -->
+  <div class="topbar">
+    🏡 Gratis &amp; vrijblijvend kennismakingsgesprek — <b>bespaar tot €10.000 commissie</b> bij de verkoop van je woning
+  </div>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo">RFL<span>CT</span></div>
+      <nav class="menu">
+        <a href="#">Hoe het werkt</a>
+        <a href="#">Diensten</a>
+        <a href="#">Waarom RFLCT</a>
+        <a href="#">Tarieven</a>
+        <a href="#">FAQ</a>
+      </nav>
+      <a href="#" class="btn btn-primary">Gratis waardebepaling</a>
+    </div>
+  </header>
+
+  <!-- ================================================================
+       HERO VARIANT — Odoo: "Image - Text" (s_image_text)
+  ================================================================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+
+      <!-- Tekstkolom -->
+      <div>
+        <span class="eyebrow">Vlaams-Brabant &amp; Limburg</span>
+        <h1>Verkoop je woning zelf.<br>Maar niet alleen.</h1>
+        <p class="lead" style="margin-top:18px;">Professionele begeleiding van strategie tot bod — tegen een vaste prijs, zónder commissie. Jij houdt de regie én de opbrengst.</p>
+        <div class="hero-badges">
+          <span class="hero-badge"><span class="tick">✓</span> Vaste prijs, geen commissie</span>
+          <span class="hero-badge"><span class="tick">✓</span> Onafhankelijke schatting van je woningwaarde</span>
+          <span class="hero-badge"><span class="tick">✓</span> Alles geregeld: attesten, foto's &amp; advertenties</span>
+        </div>
+        <div class="hero-cta">
+          <a href="#" class="btn btn-primary">Bereken gratis je woningwaarde →</a>
+          <a href="#" class="btn btn-line">Bekijk hoe het werkt</a>
+        </div>
+        <p class="hero-note">In 60 seconden — vrijblijvend en zonder verplichtingen.</p>
+      </div>
+
+      <!-- Mediakolom: één nette foto + zwevende hook-kaartjes -->
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1100&q=80" alt="Mooie woning te koop" />
+        <div class="trust-mini">★★★★★ <span>begeleiding van A tot Z</span></div>
+        <div class="float-card">
+          <div class="euro">€</div>
+          <div>
+            <div class="big">€10.000+</div>
+            <div class="lbl">gemiddeld bespaard aan commissie</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
