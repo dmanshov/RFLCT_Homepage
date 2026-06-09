@@ -126,13 +126,60 @@ wat nu ontbreekt.
 
 ---
 
+## 6b. Hero-variant (`hero-variant.html`)
+
+Een rustiger alternatief voor het eerste blok: lichte achtergrond, tekst links
+en één nette foto rechts (zonder donkere overlay). De hook blijft via een
+zwevend cijfer-kaartje (€10.000) en de dubbele CTA.
+
+| Onderdeel | Odoo building block | Instellingen |
+|---|---|---|
+| Hero split-layout | Structure › **Image - Text** (`s_image_text`) | Tekstkolom links, Media (foto) rechts, achtergrond = Light |
+| Zwevend besparing-kaartje | **Card** (`s_card`) of Image met tekst-overlay | Absoluut gepositioneerd over de foto; in Odoo: kleine Card onder de foto of overlay-optie |
+| Sterren-kaartje | **Card** / **Text** | Klein vertrouwenslabel rechtsboven de foto |
+
+> Kies óf de Cover-hero (`index.html`) óf deze Image-Text-variant — niet beide.
+
+---
+
+## 6c. Detailpagina "Wat je precies krijgt" (`wat-je-krijgt.html`)
+
+Aparte pagina die concreet maakt wat RFLCT aflevert. Tevens de belangrijkste
+doorklikbestemming vanaf de homepage (knop in de Diensten-sectie →
+`wat-je-krijgt.html`). Maak deze in Odoo aan via **Website → Pages → New Page**
+en bouw ze met onderstaande blokken.
+
+| # | Sectie | Odoo building block (categorie › naam) | Belangrijkste instellingen |
+|---|---|---|---|
+| 1 | Page hero + breadcrumb | Structure › **Banner** (`s_banner`) of smalle **Cover** (`s_cover`) | Achtergrond = Light, breadcrumb als kleine tekst, "tags" als knop-pills |
+| 2 | Vier fases met deliverables | Per fase een **Image - Text** (`s_image_text`) óf **Steps** (`s_process_steps`) | Genummerd; de deliverables-lijst eronder als **Card** (`s_card`) of **Text** met opsomming in 2 kolommen |
+| 3 | Inbegrepen vs. "goed om te weten" | Content › **Comparisons** (`s_comparisons`, 2 kolommen) of 2× **Text** naast elkaar | Achtergrond = Primary, links checklist, rechts nuanceringen |
+| 4 | Resultaat / outcome | Content › **Numbers** (`s_numbers`) | 3 kolommen met grote cijfers |
+| 5 | Slot-CTA | Structure › **Call to Action** (`s_call_to_action`) | Achtergrond = Primary, 2 knoppen terug naar de waardebepaling |
+| 6 | Footer | **Website Footer** (thema-template) | Beknopte footer |
+
+**Koppeling vanaf de homepage:** in de Diensten-sectie (§2, rij 6) staat onder de
+features-grid een **Button**-snippet → link naar `wat-je-krijgt.html`. Dit maakt
+van de homepage een verdeelpunt en verlaagt de bounce.
+
+> 💡 Tip voor de fase-deliverables: het kleine, genummerde icoon-vierkant (1–4)
+> maak je met de **Steps**-stijl, of met een Image-Text waar je in de
+> linkerkolom een gekleurd tekstblok met het cijfer plaatst. De deliverables
+> zelf zijn een gewone opsomming binnen een **Card** met achtergrondkleur Light.
+
+---
+
 ## 7. Hoe verder
 
-1. Open `index.html` in je browser om het ontwerp te beoordelen.
-2. Bouw de pagina na in Odoo met de blokken uit de tabel in §2.
-3. Stel de themakleuren (§3) in op de echte RFLCT-huisstijl.
-4. Koppel het waardebepaling-formulier aan CRM (§4).
-5. Vervang voorbeeld-foto, testimonials en contactgegevens door echte content.
+1. Open `index.html`, `hero-variant.html` en `wat-je-krijgt.html` in je browser
+   om de ontwerpen te beoordelen.
+2. Kies je hero: de Cover-versie (`index.html`) of de rustige Image-Text-variant
+   (`hero-variant.html`, §6b).
+3. Bouw de homepage na in Odoo met de blokken uit §2 en de detailpagina met §6c.
+4. Stel de themakleuren (§3) in op de echte RFLCT-huisstijl.
+5. Koppel het waardebepaling-formulier aan CRM (§4).
+6. Vervang voorbeeld-foto's, testimonials, deliverables en contactgegevens door
+   echte content (stem de deliverables per fase af met RFLCT).
 
 ---
 
